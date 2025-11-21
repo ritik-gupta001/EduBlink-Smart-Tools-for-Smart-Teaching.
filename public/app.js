@@ -1012,30 +1012,31 @@ function downloadResults() {
     return;
   }
   
-  // Create a clean HTML document for PDF
-  const resultsContent = document.getElementById('resultsContent');
+  // Create clean text content for download
   const toolName = AppState.currentResults.tool.toUpperCase();
   const timestamp = new Date().toLocaleString();
+  const data = AppState.currentResults.data;
   
-  // Create a new window for PDF generation
-  const pdfWindow = window.open('', '_blank');
+  let textContent = `EduBlink - ${toolName} Results\n`;
+  textContent += `AI-Powered Educational Content Generator\n`;
+  textContent += `Generated on: ${timestamp}\n`;
+  textContent += `\n${'='.repeat(60)}\n\n`;
   
-  const htmlContent = createPrintableHTML(resultsContent, toolName, timestamp);
+  // Format the content based on tool type
+  textContent += JSON.stringify(data, null, 2);
   
-  pdfWindow.document.write(htmlContent);
-  pdfWindow.document.close();
+  // Create and download text file
+  const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `EduBlink-${toolName}-${Date.now()}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
   
-  // Auto-trigger print dialog to save as PDF
-  pdfWindow.onload = function() {
-    setTimeout(() => {
-      pdfWindow.print();
-      pdfWindow.onafterprint = function() {
-        pdfWindow.close();
-      };
-    }, 250);
-  };
-  
-  showToast('📄 Opening PDF save dialog...');
+  showToast('📥 Results downloaded successfully!');
 }
 
 /**
