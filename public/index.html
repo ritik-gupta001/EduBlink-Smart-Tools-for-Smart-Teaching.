@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EduBlink - AI-powered education content generator for MCQs, worksheets, lesson plans, and more">
+    <title>EduBlink - AI Education Content Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+</head>
+<body>
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 40 40" width="32" height="32">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FF8C42;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#FFA666;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="20" cy="20" r="18" fill="url(#logoGradient)" opacity="0.2"/>
+                    <path d="M20 8 L28 16 L20 24 L12 16 Z" fill="url(#logoGradient)"/>
+                    <circle cx="20" cy="16" r="3" fill="white"/>
+                    <rect x="18" y="20" width="4" height="8" rx="2" fill="url(#logoGradient)"/>
+                </svg>
+                <span class="logo-text">EduBlink</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+        
+        <ul class="nav-menu">
+            <li class="nav-item active">
+                <a href="#home" class="nav-link" data-section="home">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#tools" class="nav-link" data-section="tools">
+                    <span class="nav-icon">🛠️</span>
+                    <span class="nav-text">All Tools</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#mcq" class="nav-link" data-section="mcq">
+                    <span class="nav-icon">✅</span>
+                    <span class="nav-text">MCQ Generator</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#worksheet" class="nav-link" data-section="worksheet">
+                    <span class="nav-icon">📝</span>
+                    <span class="nav-text">Worksheet</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#lessonplan" class="nav-link" data-section="lessonplan">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">Lesson Plan</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#summarizer" class="nav-link" data-section="summarizer">
+                    <span class="nav-icon">📄</span>
+                    <span class="nav-text">Summarizer</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#proofread" class="nav-link" data-section="proofread">
+                    <span class="nav-icon">✏️</span>
+                    <span class="nav-text">Proof read</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#ppt" class="nav-link" data-section="ppt">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">PPT Generator</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#reportcard" class="nav-link" data-section="reportcard">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-text">Report Card</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#essaygrader" class="nav-link" data-section="essaygrader">
+                    <span class="nav-icon">📝</span>
+                    <span class="nav-text">Essay Grader</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#textrewriter" class="nav-link" data-section="textrewriter">
+                    <span class="nav-icon">🔄</span>
+                    <span class="nav-text">Text Rewriter</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span class="theme-icon sun">☀️</span>
+                <span class="theme-icon moon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <header class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-logo-container">
+                    <svg class="hero-logo" viewBox="0 0 200 200" width="180" height="180">
+                        <defs>
+                            <linearGradient id="heroGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FF8C42;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#FFA666;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FF8C42;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="heroGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFB380;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#FF8C42;stop-opacity:0.8" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Outer rotating ring -->
+                        <circle class="hero-logo-ring" cx="100" cy="100" r="85" fill="none" stroke="url(#heroGradient1)" stroke-width="3" opacity="0.3"/>
+                        
+                        <!-- Main book/brain shape -->
+                        <g class="hero-logo-main">
+                            <!-- Book pages -->
+                            <path d="M60 70 Q100 60 140 70 L140 130 Q100 140 60 130 Z" fill="url(#heroGradient1)" filter="url(#glow)"/>
+                            
+                            <!-- Brain/AI neurons -->
+                            <circle cx="80" cy="90" r="4" fill="#FFF" opacity="0.9"/>
+                            <circle cx="100" cy="85" r="5" fill="#FFF" opacity="0.9"/>
+                            <circle cx="120" cy="90" r="4" fill="#FFF" opacity="0.9"/>
+                            <circle cx="90" cy="105" r="3.5" fill="#FFF" opacity="0.8"/>
+                            <circle cx="110" cy="105" r="3.5" fill="#FFF" opacity="0.8"/>
+                            
+                            <!-- Connection lines (neural network) -->
+                            <line x1="80" y1="90" x2="100" y2="85" stroke="#FFF" stroke-width="1.5" opacity="0.5"/>
+                            <line x1="100" y1="85" x2="120" y2="90" stroke="#FFF" stroke-width="1.5" opacity="0.5"/>
+                            <line x1="80" y1="90" x2="90" y2="105" stroke="#FFF" stroke-width="1.5" opacity="0.5"/>
+                            <line x1="120" y1="90" x2="110" y2="105" stroke="#FFF" stroke-width="1.5" opacity="0.5"/>
+                            <line x1="100" y1="85" x2="90" y2="105" stroke="#FFF" stroke-width="1.5" opacity="0.5"/>
+                            <line x1="100" y1="85" x2="110" y2="105" stroke="#FFF" stroke-width="1.5" opacity="0.5"/>
+                        </g>
+                        
+                        <!-- Sparkle effects -->
+                        <circle class="sparkle sparkle-1" cx="40" cy="50" r="3" fill="#FFB380"/>
+                        <circle class="sparkle sparkle-2" cx="160" cy="60" r="2.5" fill="#FFA666"/>
+                        <circle class="sparkle sparkle-3" cx="150" cy="140" r="3.5" fill="#FF8C42"/>
+                        <circle class="sparkle sparkle-4" cx="50" cy="150" r="2" fill="#FFB380"/>
+                    </svg>
+                </div>
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Your AI Teaching <span class="gradient-text">Superpower</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Create Stunning Educational Content in Seconds, Not Hours
+                    </p>
+                    <p class="hero-description">
+                        From MCQs to lesson plans, worksheets to presentations—EduBlink's AI does the heavy lifting so you can focus on what matters: inspiring students and making an impact.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-large" onclick="scrollToTools()">
+                            Start Creating Now
+                            <span class="btn-arrow">→</span>
+                        </button>
+                        <button class="btn btn-secondary btn-large" onclick="openLearnMore()">
+                            See How It Works
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tools Grid Section -->
+        <section class="tools-section" id="tools">
+            <div class="section-header">
+                <h2 class="section-title">Choose Your Tool</h2>
+                <p class="section-subtitle">Select from our suite of AI-powered educational tools</p>
+            </div>
+            
+            <div class="tools-grid">
+                <!-- MCQ Generator Card -->
+                <article class="tool-card" data-tool="mcq">
+                    <div class="tool-icon">✅</div>
+                    <h3 class="tool-title">MCQ Generator</h3>
+                    <p class="tool-description">
+                        Create smart quizzes with instant answers.
+                    </p>
+                    <button class="tool-btn" onclick="openToolModal('mcq')">
+                        Generate MCQs
+                    </button>
+                </article>
+
+                <!-- Worksheet Generator Card -->
+                <article class="tool-card" data-tool="worksheet">
+                    <div class="tool-icon">📝</div>
+                    <h3 class="tool-title">Worksheet Generator</h3>
+                    <p class="tool-description">
+                        Design custom worksheets ready to print.
+                    </p>
+                    <button class="tool-btn" onclick="openToolModal('worksheet')">
+                        Create Worksheet
+                    </button>
+                </article>
+
+                <!-- Lesson Plan Card -->
+                <article class="tool-card" data-tool="lessonplan">
+                    <div class="tool-icon">📚</div>
+                    <h3 class="tool-title">Lesson Plan</h3>
+                    <p class="tool-description">
+                        Plan engaging lessons in minutes.
+                    </p>
+                    <button class="tool-btn" onclick="openToolModal('lessonplan')">
+                        Create Plan
+                    </button>
+                </article>
+
+                <!-- Text Summarizer Card -->
+                <article class="tool-card" data-tool="summarizer">
+                    <div class="tool-icon">📄</div>
+                    <h3 class="tool-title">Text Summarizer</h3>
+                    <p class="tool-description">
+                        Get the main points instantly.
+                    </p>
+                    <button class="tool-btn" onclick="openToolModal('summarizer')">
+                        Summarize Text
+                    </button>
+                </article>
+
+                <!-- Proofread Card -->
+                <article class="tool-card" data-tool="proofread">
+                    <div class="tool-icon">✏️</div>
+                    <h3 class="tool-title">Proof read</h3>
+                    <p class="tool-description">
+                        Perfect your writing effortlessly.
+                    </p>
+                    <button class="tool-btn" onclick="openToolModal('proofread')">
+                        Proof read Text
+                    </button>
+                </article>
+
+                <!-- PPT Generator Card -->
+                <article class="tool-card" data-tool="ppt">
+                    <div class="tool-icon">📊</div>
+                    <h3 class="tool-title">PPT Generator</h3>
+                    <p class="tool-description">
+                        Build stunning presentations fast.
+                    </p>
+                    <button class="tool-btn" onclick="openToolModal('ppt')">
+                        Generate Slides
+                    </button>
+                </article>
+
+                <!-- Report Card Card -->
+                <article class="tool-card" data-tool="reportcard">
+                    <div class="tool-icon">📋</div>
+                    <h3 class="tool-title">Report Card</h3>
+                    <p class="tool-description">
+                        Write thoughtful feedback quickly.
+                    </p>
+                    <button class="tool-btn" onclick="openToolModal('reportcard')">
+                        Create Comments
+                    </button>
+                </article>
+
+                <!-- Essay Grader Card -->
+                <article class="tool-card" data-tool="essaygrader">
+                    <div class="tool-icon">📝</div>
+                    <h3 class="tool-title">Essay Grader</h3>
+                    <p class="tool-description">
+                        Provide detailed feedback instantly.
+                    </p>
+                    <button class="tool-btn" onclick="openToolModal('essaygrader')">
+                        Grade Essay
+                    </button>
+                </article>
+
+                <article class="tool-card" data-tool="textrewriter">
+                    <div class="tool-icon">🔄</div>
+                    <h3 class="tool-title">Text Rewriter</h3>
+                    <p class="tool-description">
+                        Transform text to match any style.
+                    </p>
+                    <button class="tool-btn" onclick="openToolModal('textrewriter')">
+                        Rewrite Text
+                    </button>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Results Panel (Right Side) -->
+    <aside class="results-panel" id="resultsPanel">
+        <div class="results-header">
+            <h3 class="results-title">Results</h3>
+            <button class="results-close" id="resultsClose" aria-label="Close results panel">×</button>
+        </div>
+        <div class="results-content" id="resultsContent">
+            <div class="results-empty">
+                <span class="empty-icon">📭</span>
+                <p>No results yet. Generate content using any tool to see results here.</p>
+            </div>
+        </div>
+        <div class="results-actions" id="resultsActions" style="display: none;">
+            <button class="btn btn-secondary btn-sm" onclick="copyResults()">
+                📋 Copy
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="downloadResults()">
+                💾 Download
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="printResults()">
+                🖨️ Print
+            </button>
+        </div>
+    </aside>
+
+    <!-- Modal for Tool Inputs -->
+    <div class="modal" id="toolModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Tool Name</h2>
+                <button class="modal-close" onclick="closeToolModal()" aria-label="Close modal">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic form content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p class="loading-text" id="loadingText">Hold tight — generating high-quality content...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon" id="toastIcon">ℹ️</span>
+        <span class="toast-message" id="toastMessage">Notification message</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
