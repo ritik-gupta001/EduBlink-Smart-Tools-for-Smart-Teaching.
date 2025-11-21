@@ -1003,6 +1003,9 @@ function copyResults() {
 /**
  * Download results as JSON
  */
+/**
+ * Download results as PDF
+ */
 function downloadResults() {
   if (!AppState.currentResults) {
     showToast('❌ No results to download', 'error');
@@ -1014,10 +1017,66 @@ function downloadResults() {
   const toolName = AppState.currentResults.tool.toUpperCase();
   const timestamp = new Date().toLocaleString();
   
+  // Create a new window for PDF generation
+  const pdfWindow = window.open('', '_blank');
+  
+  const htmlContent = createPrintableHTML(resultsContent, toolName, timestamp);
+  
+  pdfWindow.document.write(htmlContent);
+  pdfWindow.document.close();
+  
+  // Auto-trigger print dialog to save as PDF
+  pdfWindow.onload = function() {
+    setTimeout(() => {
+      pdfWindow.print();
+      pdfWindow.onafterprint = function() {
+        pdfWindow.close();
+      };
+    }, 250);
+  };
+  
+  showToast('📄 Opening PDF save dialog...');
+}
+
+/**
+ * Print results
+ */
+function printResults() {
+  if (!AppState.currentResults) {
+    showToast('❌ No results to print', 'error');
+    return;
+  }
+  
+  const resultsContent = document.getElementById('resultsContent');
+  const toolName = AppState.currentResults.tool.toUpperCase();
+  const timestamp = new Date().toLocaleString();
+  
   // Create a new window for printing
   const printWindow = window.open('', '_blank');
   
-  const htmlContent = `
+  const htmlContent = createPrintableHTML(resultsContent, toolName, timestamp);
+  
+  printWindow.document.write(htmlContent);
+  printWindow.document.close();
+  
+  // Trigger print dialog
+  printWindow.onload = function() {
+    setTimeout(() => {
+      printWindow.print();
+      printWindow.onafterprint = function() {
+        printWindow.close();
+      };
+    }, 250);
+  };
+  
+  showToast('🖨️ Opening print dialog...');
+}
+
+/**
+ * Create printable HTML content
+ */
+function createPrintableHTML(resultsContent, toolName, timestamp) {
+  return `
     <!DOCTYPE html>
     <html>
     <head>
@@ -1155,6 +1214,10 @@ function downloadResults() {
           .question {
             page-break-inside: avoid;
           }
+          
+          h2, h3 {
+            page-break-after: avoid;
+          }
         }
       </style>
     </head>
@@ -1176,29 +1239,6 @@ function downloadResults() {
     </body>
     </html>
   `;
-  
-  printWindow.document.write(htmlContent);
-  printWindow.document.close();
-  
-  // Wait for content to load, then trigger print
-  printWindow.onload = function() {
-    setTimeout(() => {
-      printWindow.print();
-      // Close window after printing or canceling
-      printWindow.onafterprint = function() {
-        printWindow.close();
-      };
-    }, 250);
-  };
-  
-  showToast('📄 Opening print dialog for PDF download...');
-}
-
-/**
- * Print results
- */
-function printResults() {
-  window.print();
 }
 
 // ===========================
