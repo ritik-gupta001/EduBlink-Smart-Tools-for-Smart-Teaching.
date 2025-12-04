@@ -112,7 +112,7 @@ EduBlink/
 ├── .env                       # Environment variables (create this)
 ├── .env.example              # Environment template
 ├── requirements.txt          # Python dependencies
-└── README.md                 # This file
+└── README.md                 
 ```
 
 ## 🎯 Usage Guide
@@ -209,100 +209,19 @@ OPENAI_MODEL=gpt-4o-mini    # AI model (fast & cost-effective)
 PORT=3000                    # Server port
 ```
 
-### Model Options
+### Model 
 
-- **gpt-4o-mini** (Recommended) - Fast, affordable, great quality
-- **gpt-4o** - Most capable, slower, more expensive
-- **gpt-3.5-turbo** - Faster, cheaper, lower quality
-
-### Rate Limiting
-
-Current settings (in `server.py`):
-- **100 requests** per 15 minutes per IP
-- Automatically resets after window expires
-- Returns 429 error when limit exceeded
-
-## 🔒 Security
-
-### API Key Protection
-
-- ✅ API key stored in `.env` (server-side only)
-- ✅ Never exposed to frontend/browser
-- ✅ `.env` in `.gitignore` to prevent commits
-- ✅ All AI requests proxied through backend
-
-### Best Practices
-
-⚠️ **NEVER commit `.env` to version control!**
-
+- **gpt-4o-mini** - Fast, affordable, great quality
+  
 ## 🚀 Deployment
 
-### Deploying to Production
+#### Render
 
-#### Option 1: Railway/Render (Recommended)
-
-1. **Create account** at [Railway.app](https://railway.app) or [Render.com](https://render.com)
+1. **Create account** at  [Render.com](https://render.com)
 2. **Connect GitHub repository**
 3. **Set environment variable**:
    - `OPENAI_API_KEY` = your key
-4. **Deploy** - Platform auto-detects Python and runs `server.py`
-
-#### Option 2: Heroku
-
-```bash
-# Install Heroku CLI
-heroku login
-heroku create your-app-name
-
-# Set environment variable
-heroku config:set OPENAI_API_KEY=sk-your-key-here
-
-# Create Procfile
-echo "web: python server.py" > Procfile
-
-# Deploy
-git push heroku main
-```
-
-#### Option 3: Azure/AWS/Google Cloud
-
-Use their Python app hosting services. Set `OPENAI_API_KEY` in environment variables and configure port binding.
-
-### Environment Variables for Production
-
-```env
-OPENAI_API_KEY=sk-your-production-key
-OPENAI_MODEL=gpt-4o-mini
-PORT=8000  # Or platform-assigned port
-```
-
-## 🛠️ Troubleshooting
-
-### Common Issues
-
-#### "Failed to generate content" Error
-- ✅ Check `.env` file exists with valid API key
-- ✅ Verify server is running (`python server.py`)
-- ✅ Check console for error messages
-- ✅ Ensure API key has credits
-
-#### Server Not Accessible
-- ✅ Access via `http://localhost:3000` (not Live Server)
-- ✅ Check firewall/antivirus blocking port 3000
-- ✅ Verify Python version 3.8+
-- ✅ Restart server if needed
-
-#### API Rate Limit Exceeded
-- ✅ Wait 15 minutes for rate limit reset
-- ✅ Check OpenAI account usage limits
-- ✅ Adjust rate limiting in `server.py` if needed
-
-#### Unicode/Encoding Errors (Windows)
-- ✅ Ensure terminal uses UTF-8 encoding
-- ✅ Run `chcp 65001` before starting server
-- ✅ Use PowerShell instead of CMD
-
-## 📝 Development Notes
+4. **Deploy** - Platform auto-detects Python and runs `server.py
 
 ### Technology Stack
 
@@ -338,9 +257,6 @@ MIT License - Feel free to use for personal or commercial projects
 - All educators using this tool
 
 ---
-
-**Made with ❤️ for teachers who want to save time and create better educational content.**
-
 For issues or questions, check the troubleshooting section above.
 - Use HTTPS only
 - Monitor API usage and costs
@@ -511,37 +427,6 @@ Check server health and configuration.
   }
 }
 ```
-
-## 🎯 Next Steps & Improvements
-
-### Recommended Enhancements
-
-1. **User Authentication**
-   - Add login/signup functionality
-   - Save user's generated content
-   - Usage tracking per user
-
-2. **Database Integration**
-   - Store generated content
-   - Allow editing and versioning
-   - Share content with colleagues
-
-3. **Export Formats**
-   - PDF export
-   - DOCX export
-   - Google Slides integration for PPTs
-   - Learning Management System (LMS) integration
-
-4. **Analytics**
-   - Track most-used tools
-   - Monitor API costs
-   - User engagement metrics
-
-5. **Collaboration**
-   - Share generated content via link
-   - Commenting and feedback
-   - Team workspaces
-
 6. **Advanced Features**
    - Batch generation
    - Custom prompt templates
@@ -663,9 +548,3 @@ For issues and questions:
 **Frontend:** Vanilla JavaScript (ES6+), HTML5, CSS3  
 **API:** OpenAI GPT-4o-mini  
 **Deployment:** Standalone server (no external dependencies)
-
----
-
-**Made with ❤️ by Ritik Gupta**
-
-Happy Teaching! 🎓✨
