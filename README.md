@@ -523,24 +523,6 @@ SOFTWARE.
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📧 Support
-
-For issues and questions:
-- Open an issue on GitHub
-- Check existing issues for solutions
-- Review `prompts.md` for prompt customization
-
-## 🎨 Design
-
-**Color Scheme:** Light grey backgrounds with warm brown text for a sophisticated, educational aesthetic.
-
-**Theme Toggle:** Switch between light and dark modes with persistent preference storage.
-
-## 🙏 Acknowledgments
-
-- Built with [FastAPI](https://fastapi.tiangolo.com/) and [OpenAI GPT-4](https://openai.com/)
-- Styled with modern CSS custom properties (light grey & brown palette)
-- Icons from Unicode emojis
 
 ## 🚀 Tech Stack
 
